@@ -1,18 +1,9 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
+
 version: 2
 jobs:
   build:
     docker:
-      # specify the version you desire here
       - image: circleci/node:7.10
-      
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
 
     working_directory: ~/repo
 
@@ -24,7 +15,7 @@ jobs:
           command: echo 'export VERSION=$(echo $CIRCLE_SHA1 | cut -c -7)' >> $BASH_ENV
       - run:
           name: Docker build
-          command: docker build -t $DOCKER_USER/devops:$VERSION .
+          command: docker build -t $DOCKER_USER/mohsen:$VERSION .
       - run:
           name: Docker login
           command: docker login -u $DOCKER_USER -p $DOCKER_PASS 
